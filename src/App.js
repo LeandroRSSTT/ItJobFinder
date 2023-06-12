@@ -7,7 +7,7 @@ import SettingsPage from './Pages/SettingsPage';
 import './App.css';
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'halloween');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'lofi');
 
   const changeTheme = (newTheme) => {
     setTheme(newTheme);
@@ -23,8 +23,8 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/settings" element={<SettingsPage changeTheme={changeTheme} />} />
-        <Route path="/" element={<FeedList />} />
+        <Route path="/ItJobFinder/settings" element={<SettingsPage changeTheme={changeTheme} />} />
+        <Route path="/ItJobFinder/" element={<FeedList />} />
       </Routes>
     </Router>
   );

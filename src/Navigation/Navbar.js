@@ -10,13 +10,13 @@ const Navbar = () => (
           </svg>
         </label>
         <ul tabIndex={0} className="menu bg-neutral text-neutral-content menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a className="hover:bg-secondary" href="/">Homepage</a></li>
-          <li><a className="hover:bg-secondary" href="/settings">Settings</a></li>
+          <li><a className="hover:bg-secondary hover:text-secondary-content" href="/ItJobFinder">Homepage</a></li>
+          <li><a className="hover:bg-secondary hover:text-secondary-content" href="/ItJobFinder/settings">Settings</a></li>
         </ul>
       </div>
     </div>
     <div className="navbar-center flex-grow text-center">
-      <a href="/" className="btn btn-ghost normal-case text-2xl w-full">Jobs list</a>
+      <a href="/ItJobFinder/" className="btn btn-ghost normal-case text-2xl w-full">Jobs list</a>
     </div>
     <div className="navbar-end">
       {/* Add any additional elements here if needed */}

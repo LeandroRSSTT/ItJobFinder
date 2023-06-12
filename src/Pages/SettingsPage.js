@@ -40,15 +40,19 @@ function SettingsPage({ changeTheme }) {
   };
 
   return (
-    <div className="p-10 grid grid-cols-6 gap-4">
+    <div className="px-4 sm:px-6 lg:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="text-center col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4">
+        <h1 className="text-4xl font-bold my-8">Changer le thème</h1>
+      </div>
       {themes.map((theme, index) => (
-        <button
-          key={index}
-          className={`btn ${currentTheme === theme ? 'btn-primary' : 'btn-secondary'}`}
-          onClick={() => handleThemeChange(theme)}
-        >
-          {theme.charAt(0).toUpperCase() + theme.slice(1)}
-        </button>
+        <div key={index} className="col-span-1">
+          <button
+            className={`w-full btn ${currentTheme === theme ? 'btn-primary' : 'btn-secondary'}`}
+            onClick={() => handleThemeChange(theme)}
+          >
+            {theme.charAt(0).toUpperCase() + theme.slice(1)}
+          </button>
+        </div>
       ))}
     </div>
   );
