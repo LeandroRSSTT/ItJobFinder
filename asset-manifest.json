@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ItJobFinder/static/css/main.c3e90d34.css",
-    "main.js": "/ItJobFinder/static/js/main.5a629f25.js",
+    "main.js": "/ItJobFinder/static/js/main.cc4f54fc.js",
     "static/js/787.1535c4dd.chunk.js": "/ItJobFinder/static/js/787.1535c4dd.chunk.js",
     "index.html": "/ItJobFinder/index.html",
     "main.c3e90d34.css.map": "/ItJobFinder/static/css/main.c3e90d34.css.map",
-    "main.5a629f25.js.map": "/ItJobFinder/static/js/main.5a629f25.js.map",
+    "main.cc4f54fc.js.map": "/ItJobFinder/static/js/main.cc4f54fc.js.map",
     "787.1535c4dd.chunk.js.map": "/ItJobFinder/static/js/787.1535c4dd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c3e90d34.css",
-    "static/js/main.5a629f25.js"
+    "static/js/main.cc4f54fc.js"
   ]
 }
