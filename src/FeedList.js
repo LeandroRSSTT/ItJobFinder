@@ -79,7 +79,7 @@ const FeedList = () => {
       {newItems.length > 0 && (
         <div className="mt-8 mb-4">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-0">Nouvelles offres d'emploi</h1>
+            <h1 className="text-4xl font-bold mb-0">Nouveau cette semaine</h1>
           </div>
           <div className="flex flex-wrap justify-center">
             {newItems.map((item) => (
