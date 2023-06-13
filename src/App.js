@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'; // Ajoutez useEffect ici
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import FeedList from './FeedList';
 import Navbar from './Navigation/Navbar';
 import SettingsPage from './Pages/SettingsPage';
@@ -23,8 +23,8 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/ItJobFinder/settings" element={<SettingsPage changeTheme={changeTheme} />} />
-        <Route path="/ItJobFinder/" element={<FeedList />} />
+      <Route path="/settings" element={<SettingsPage changeTheme={changeTheme} />} />
+        <Route path="/" element={<FeedList />} />
       </Routes>
     </Router>
   );
