@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-neutral flex items-center justify-between mb-8 text-neutral-content">
+    <div className="navbar bg-neutral flex items-center justify-between mb-4 text-neutral-content">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -12,13 +12,13 @@ const Navbar = () => {
             </svg>
           </label>
           <ul tabIndex={0} className="menu bg-neutral text-neutral-content menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-            <li><Link className="hover:bg-secondary hover:text-secondary-content" to="/">Homepage</Link></li>
-            <li><Link className="hover:bg-secondary hover:text-secondary-content" to="/settings">Settings</Link></li>
+            <li><Link className="hover:bg-primary hover:text-primary-content" to="/">Homepage</Link></li>
+            <li><Link className="hover:bg-primary hover:text-primary-content" to="/settings">Settings</Link></li>
           </ul>
         </div>
       </div>
       <div className="navbar-center flex-grow text-center">
-        <Link to="/" className="btn btn-ghost normal-case text-2xl w-full">Jobs 2list</Link>
+        <Link to="/" className="normal-case text-2xl w-full">Job finder</Link>
       </div>
       <div className="navbar-end">
 
