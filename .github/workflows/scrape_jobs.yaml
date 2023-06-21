@@ -10,7 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -33,6 +39,7 @@ jobs:
         run: |
           git config --local user.email "leandro.rsstti@gmail.com"
           git config --local user.name "LeandroRSSTT"
+          git remote add ssh-origin git@github.com:LeandroRSSTT/ItJobFinder.git
           git add jobs.json
           git commit -m "Update jobs.json" -a
-          git push https://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@github.com/LeandroRSSTT/ItJobFinder.git
+          git push ssh-origin main
