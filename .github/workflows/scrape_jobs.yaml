@@ -23,7 +23,7 @@ jobs:
         pip install requests beautifulsoup4
 
     - name: Run script
-      run: python3 script/scrapper.py
+      run: python3 screipt/scrapper.py
 
     - name: Commit and push if it changed
       run: |-
