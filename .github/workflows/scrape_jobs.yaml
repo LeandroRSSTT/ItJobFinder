@@ -29,10 +29,10 @@ jobs:
       - name: Display JSON content
         run: cat jobs.json
 
-      - name: Commit and push
+      - name: Commit and push new data
         run: |
           git config --local user.email "leandro.rsstti@gmail.com"
           git config --local user.name "LeandroRSSTT"
           git add jobs.json
           git commit -m "Update jobs.json" -a
-          git push https://${{ secrets.GH_PAT }}@github.com/LeandroRSSTT/ItJobFinder.git
+          git push https://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@github.com/LeandroRSSTT/ItJobFinder.git
