@@ -31,8 +31,8 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "leandro.rsstti@gmail.com"
+          git config --local user.name "LeandroRSSTT"
           git add jobs.json
           git commit -m "Update jobs.json" -a
           git push https://${{ secrets.GH_PAT }}@github.com/LeandroRSSTT/ItJobFinder.git
