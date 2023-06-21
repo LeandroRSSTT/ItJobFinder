@@ -35,4 +35,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add jobs.json
           git commit -m "Update jobs.json" -a
-           git push https://${{ secrets.GH_PAT }}@github.com/LeandroRSSTT/ItJobFinder.git
+          git push https://${{ secrets.GH_PAT }}@github.com/LeandroRSSTT/ItJobFinder.git
