@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import jobData from '../datas/jobs.json';
+
+
+
 const FeedList = () => {
   const [filteredItems, setFilteredItems] = useState([]);
 
@@ -22,27 +26,34 @@ const FeedList = () => {
       const parsedItems = [];
 
       for (let i = 0; i < items.length; i++) {
-
         const title = items[i].getElementsByTagName('title')[0].innerHTML;
         const link = items[i].getElementsByTagName('link')[0].innerHTML;
         const description = items[i].getElementsByTagName('description')[0].innerHTML;
-        const guid = items[i].getElementsByTagName('guid')[0].innerHTML;
-        const creator = items[i].getElementsByTagName('dc:creator')[0].innerHTML;
         const pubDate = items[i].getElementsByTagName('pubDate')[0].innerHTML;
+        const from = "Etat de Genève";
+        const duration = "Non précisé";
+        const sector = "Non précisé";
+        const location = "Genève";
 
         const cleanedDescription = removeTags(description);
 
         parsedItems.push({
           title,
-          link,
-          description: cleanedDescription,
-          guid,
-          creator,
+          duration,
+          sector,
+          location,
           pubDate,
+          link,
+          from,
+          description: cleanedDescription,       
         });
       }
 
-      setFilteredItems(parsedItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate)));
+
+      // Ajoute les données du fichier JSON aux articles parsés
+      const allItems = [...parsedItems, ...jobData];
+
+      setFilteredItems(allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate)));
     };
 
     fetchFeed();
@@ -98,8 +109,8 @@ const FeedList = () => {
                   </p>
                   <p className="mt-2 text-md">
                     <strong>Description: </strong>
-                    {item.description.length > 255
-                      ? item.description.substring(0, 255) + "..."
+                    {item.description.length > 55
+                      ? item.description.substring(0, 55) + "..."
                       : item.description}
                   </p>
                 </div>
@@ -130,10 +141,27 @@ const FeedList = () => {
               </p>
               <p className="mt-2 text-md">
                 <strong>Description: </strong>
-                {item.description.length > 255
-                  ? item.description.substring(0, 255) + "..."
+                {item.description.length > 55
+                  ? item.description.substring(0, 55) + "..."
                   : item.description}
               </p>
+              <p className="mt-2 text-md">
+                <strong>Source: </strong>
+                {item.from}
+              </p>
+              <p className="mt-2 text-md">
+                <strong>Lieu: </strong>
+                {item.location}
+              </p>
+              <p className="mt-2 text-md">
+                <strong>Durée: </strong>
+                {item.duration}
+              </p>
+              <p className="mt-2 text-md">
+                <strong>Secteur: </strong>
+                {item.sector}
+              </p>
+
             </div>
             <div className="card-actions" style={{ marginTop: '-15px' }}>
               <a href={item.link} target="_blank" rel="noreferrer" className="btn btn-primary ml-8 mb-4">
