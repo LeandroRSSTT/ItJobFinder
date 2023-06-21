@@ -2,7 +2,7 @@ name: Scrap AW
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 0 * * *' # tous les jours à minuit
   workflow_dispatch:
   
 jobs:
@@ -29,8 +29,10 @@ jobs:
       - name: Display JSON content
         run: cat jobs.json
 
-      - name: Upload JSON artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: jobs-json
-          path: jobs.json
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add jobs.json
+          git commit -m "Update jobs.json" -a
+          git push
