@@ -4,10 +4,35 @@ import axios from 'axios';
 import jobData from '../datas/jobs.json';
 
 import Stats from '../Components/Stats';
+import Pagination from '../Components/Pagination';
 
 
 const FeedList = () => {
   const [filteredItems, setFilteredItems] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [jobsPerPage, setJobsPerPage] = useState(6);
+
+  // Calculate the number of jobs per page responsively
+  useEffect(() => {
+    const setResponsivelyJobsPerPage = () => {
+      const width = window.innerWidth;
+
+      if (width < 640) { // Tailwind's sm
+        setJobsPerPage(2);
+      } else if (width < 768) { // Tailwind's md
+        setJobsPerPage(4);
+      } else if (width < 1024) { // Tailwind's lg
+        setJobsPerPage(6);
+      } else { // Tailwind's xl
+        setJobsPerPage(6);
+      }
+    };
+
+    setResponsivelyJobsPerPage();
+    window.addEventListener('resize', setResponsivelyJobsPerPage);
+
+    return () => window.removeEventListener('resize', setResponsivelyJobsPerPage);
+  }, []);
 
   useEffect(() => {
     const fetchFeed = async () => {
@@ -90,18 +115,28 @@ const FeedList = () => {
     }
   });
 
+  // Cette fonction est utilisée pour changer de page
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // Cette partie découpe la liste d'offres en pages appropriées
+  const indexOfLastJob = currentPage * jobsPerPage;
+  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
+  const currentJobs = filteredItems.slice(indexOfFirstJob, indexOfLastJob);
+
+  // Calcule le nombre total de pages
+  const totalPages = Math.ceil(filteredItems.length / jobsPerPage);
+
+
   return (
     <div>
       <Stats totalJobs={filteredItems.length} newJobs={newItems.length} />
-      {filteredItems.length > 0 && (
-        <div className="mt-8 mb-4">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-0">Offres d'emploies </h1>
-          </div>
+      {currentJobs.length > 0 && (
+        <div className="mt-4">
           <div className="flex flex-wrap justify-center">
-            {filteredItems.map((item) => (
-              <div key={item.guid} className="card w-96 m-4 bg-base-200 text-base-content" style={{ padding: '5px' }}>
-
+            {currentJobs.map((item) => (
+              <div key={item.guid} className="card w-full sm:w-1/2 md:w-1/3 lg:w-1/4 m-4 bg-base-200 text-base-content" style={{ padding: '5px' }}>
                 <div className="card-body" style={{ marginTop: '-10px' }}>
                   <h1 className="card-title text-2xl mb-2">
                     {item.title.length > 50 ? item.title.substring(0, 50) + "..." : item.title}
@@ -143,6 +178,7 @@ const FeedList = () => {
           </div>
         </div>
       )}
+      <Pagination totalPages={totalPages} currentPage={currentPage} handlePageChange={handlePageChange} />
     </div>
   );
 };
