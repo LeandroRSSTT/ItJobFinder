@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import jobData from '../datas/jobs.json';
 
+import Stats from '../Components/Stats';
 
 
 const FeedList = () => {
@@ -45,7 +46,7 @@ const FeedList = () => {
           pubDate,
           link,
           from,
-          description: cleanedDescription,       
+          description: cleanedDescription,
         });
       }
 
@@ -91,14 +92,16 @@ const FeedList = () => {
 
   return (
     <div>
-      {newItems.length > 0 && (
+      <Stats totalJobs={filteredItems.length} newJobs={newItems.length} />
+      {filteredItems.length > 0 && (
         <div className="mt-8 mb-4">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-0">Nouveau cette semaine</h1>
+            <h1 className="text-4xl font-bold mb-0">Offres d'emploies </h1>
           </div>
           <div className="flex flex-wrap justify-center">
-            {newItems.map((item) => (
-              <div key={item.guid} className="card w-96 m-4 bg-neutral text-neutral-content" style={{ padding: '5px' }}>
+            {filteredItems.map((item) => (
+              <div key={item.guid} className="card w-96 m-4 bg-base-200 text-base-content" style={{ padding: '5px' }}>
+
                 <div className="card-body" style={{ marginTop: '-10px' }}>
                   <h1 className="card-title text-2xl mb-2">
                     {item.title.length > 50 ? item.title.substring(0, 50) + "..." : item.title}
@@ -113,6 +116,22 @@ const FeedList = () => {
                       ? item.description.substring(0, 55) + "..."
                       : item.description}
                   </p>
+                  <p className="mt-2 text-md">
+                    <strong>Source: </strong>
+                    {item.from}
+                  </p>
+                  <p className="mt-2 text-md">
+                    <strong>Lieu: </strong>
+                    {item.location}
+                  </p>
+                  <p className="mt-2 text-md">
+                    <strong>Durée: </strong>
+                    {item.duration}
+                  </p>
+                  <p className="mt-2 text-md">
+                    <strong>Secteur: </strong>
+                    {item.sector}
+                  </p>
                 </div>
                 <div className="card-actions" style={{ marginTop: '-15px' }}>
                   <a href={item.link} target="_blank" rel="noreferrer" className="btn btn-primary ml-8 mb-4">
@@ -124,56 +143,8 @@ const FeedList = () => {
           </div>
         </div>
       )}
-
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Toutes les offres d'emploi</h1>
-      </div>
-      <div className="flex flex-wrap justify-center">
-        {oldItems.map((item) => (
-          <div key={item.guid} className="card w-96 m-4 bg-neutral text-neutral-content" style={{ padding: '5px' }}>
-            <div className="card-body" style={{ marginTop: '-10px' }}>
-              <h1 className="card-title text-2xl mb-2">
-                {item.title.length > 50 ? item.title.substring(0, 50) + "..." : item.title}
-              </h1>
-              <hr className="mb-2" />
-              <p className="mb-2">
-                <strong>Date : </strong> {formatDate(item.pubDate)}
-              </p>
-              <p className="mt-2 text-md">
-                <strong>Description: </strong>
-                {item.description.length > 55
-                  ? item.description.substring(0, 55) + "..."
-                  : item.description}
-              </p>
-              <p className="mt-2 text-md">
-                <strong>Source: </strong>
-                {item.from}
-              </p>
-              <p className="mt-2 text-md">
-                <strong>Lieu: </strong>
-                {item.location}
-              </p>
-              <p className="mt-2 text-md">
-                <strong>Durée: </strong>
-                {item.duration}
-              </p>
-              <p className="mt-2 text-md">
-                <strong>Secteur: </strong>
-                {item.sector}
-              </p>
-
-            </div>
-            <div className="card-actions" style={{ marginTop: '-15px' }}>
-              <a href={item.link} target="_blank" rel="noreferrer" className="btn btn-primary ml-8 mb-4">
-                Voir l'offre
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
-
 };
 
 export default FeedList;
