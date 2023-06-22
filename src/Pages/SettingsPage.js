@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 const themes = [
+  "default",
   "light",
   "dark",
   "cupcake",
   "bumblebee",
   "emerald",
   "corporate",
-  "synthwave",
-  "retro",
-  "cyberpunk",
   "valentine",
   "halloween",
   "garden",
-  "forest",
-  "aqua",
-  "lofi",
   "pastel",
   "fantasy",
-  "wireframe",
-  "black",
   "luxury",
   "dracula",
   "cmyk",
-  "autumn",
 ];
 
 function SettingsPage({ changeTheme }) {

@@ -7,7 +7,7 @@ import SettingsPage from './Pages/SettingsPage';
 import Footer from './Components/Footer';
 
 function App() {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'lofi');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'default');
 
   const changeTheme = (newTheme) => {
     setTheme(newTheme);
