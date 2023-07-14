@@ -1,8 +1,8 @@
 name: Scrap AW
 
 on:
-  schedule:
-    - cron: '0 0 * * *' # tous les jours à minuit
+  #schedule:
+   # - cron: '0 0 * * *' # tous les jours à minuit
   workflow_dispatch:
   
 jobs:
